@@ -21,16 +21,8 @@ app.use('/api/v1/orders',orders)
 app.use('/api/v1/upload',upload)
 
 app.get('/api/config/paypal',(req,res)=>res.send(process.env.PAYPAL_CLIENT_ID))
-if(process.env.NODE_ENV==='production'){
-    app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 
-    app.get('*',(req,res)=>
-    res.sendFile(path.resolve(_dirname,'Front','build','index.html')))
-}else{
- app.get('/',(req,res=>{
-     res.send('API is running')
- }))
-}
+app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 
 
 
